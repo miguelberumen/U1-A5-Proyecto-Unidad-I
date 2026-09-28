@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Iniciar Sesión{% endblock %}
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-one-third">
+        <h1 class="title">Iniciar Sesión</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="field">
+                <label class="label">{{ form.username.label }}</label>
+                <div class="control">{{ form.username(class="input") }}</div>
+            </div>
+
+            <div class="field">
+                <label class="label">{{ form.password.label }}</label>
+                <div class="control">{{ form.password(class="input") }}</div>
+            </div>
+
+            <div class="field">
+                {{ form.submit(class="button is-info is-fullwidth") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

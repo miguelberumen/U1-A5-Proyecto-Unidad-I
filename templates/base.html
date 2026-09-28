@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Usuarios{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar is-link">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ url_for('user.user_list') }}"><strong>Miguel Berumen</strong></a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{{ url_for('user.user_list') }}">Usuarios</a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if session.get('user_id') %}
+                            <a class="button is-info" href="{{ url_for('user.profile', id=session.get('user_id')) }}">Mi Perfil ({{ session.get('username')|capitalize }})</a>
+                            <a class="button is-light" href="{{ url_for('user.logout') }}">Cerrar Sesión</a>
+                        {% else %}
+                            <a class="button is-info" href="{{ url_for('user.register') }}">Registrarse</a>
+                            <a class="button is-light" href="{{ url_for('user.login') }}">Iniciar Sesión</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            {% include '_messages.html' %}
+            {% block content %}{% endblock %}
+        </div>
+    </section>
+</body>
+</html>

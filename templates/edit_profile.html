@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Editar Perfil{% endblock %}
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-one-third">
+        <h1 class="title">Editar Perfil</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="field">
+                <label class="label">{{ form.username.label }}</label>
+                <div class="control">{{ form.username(class="input") }}</div>
+            </div>
+
+            <div class="field">
+                <label class="label">{{ form.email.label }}</label>
+                <div class="control">{{ form.email(class="input") }}</div>
+            </div>
+
+            <div class="field">
+                {{ form.submit(class="button is-success is-fullwidth") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

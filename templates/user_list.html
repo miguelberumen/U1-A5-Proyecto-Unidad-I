@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Lista de Usuarios{% endblock %}
+{% block content %}
+<h1 class="title">Lista de Usuarios Registrados</h1>
+<table class="table is-fullwidth is-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.username|capitalize }}</td>
+            <td>{{ u.email }}</td>
+            <td>
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('user.profile', id=u.id) }}" class="button is-small is-info">Ver Perfil</a>
+                {% else %}
+                    <span class="tag is-light">Inicia sesión para interactuar</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No hay usuarios registrados aún.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

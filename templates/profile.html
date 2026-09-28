@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Perfil de Usuario{% endblock %}
+{% block content %}
+<div class="box">
+    <h1 class="title">Perfil de {{ user.username|capitalize }}</h1>
+    <p><strong>ID:</strong> {{ user.id }}</p>
+    <p><strong>Correo:</strong> {{ user.email }}</p>
+    <br>
+    <a href="{{ url_for('user.edit_profile', id=user.id) }}" class="button is-warning">Editar Perfil</a>
+    
+    <form action="{{ url_for('user.delete_user', id=user.id) }}" method="POST" style="display:inline;">
+        <button type="submit" class="button is-danger" onclick="return confirm('¿Seguro de eliminar este usuario?');">Eliminar Usuario</button>
+    </form>
+</div>
+{% endblock %}
